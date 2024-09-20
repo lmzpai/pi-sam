@@ -4,9 +4,6 @@ import random
 import torch
 import numpy as np
 
-pth="/home/lmz/lab/pi-sam/"
-sys.path.append(pth)
-
 from segment_anything.utils import dist
 from segment_anything.utils.logger import setup_logger
 from segment_anything.runner import Runner
@@ -19,8 +16,6 @@ def get_args_parser():
                         help="Path to the directory where masks and checkpoints will be output")
     parser.add_argument("--model-type", type=str, default="vit_l", 
                         help="The type of model to load, in ['vit_h', 'vit_l', 'vit_b']")
-    parser.add_argument("--sam_ckpt", type=str, default='checkpoints/sam_vit_l_0b3195.pth', 
-                        help="The path to the SAM checkpoint to use for mask generation.")
     parser.add_argument("--decoder_type", type=str, default="pi", 
                         help="The type of mask decoder to load, in ['ori', 'hq', 'pi']")
     parser.add_argument("--ckpt_root", default=None, 
@@ -84,7 +79,7 @@ def main(args):
 if __name__ == "__main__":
     args = get_args_parser()
     train_used_dataset = set(["ALL"])
-    valid_used_dataset = set(["DIS5K-VD","BIG_val","BIG_test"])
+    valid_used_dataset = set(["DIS5K-VD"])
     test_used_dataset = set(["ALL"])
     args.train_used_dataset = train_used_dataset
     args.valid_used_dataset = valid_used_dataset

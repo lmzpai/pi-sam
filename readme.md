@@ -71,12 +71,18 @@ dataset_folder
 ```
 Other dataset setting can be found at `segment_anything/dataset/data_config.py`
 
-**train:**
+```
+checkpoint_folder
+├── sam_vit_h_4b8939.pth
+├── sam_vit_l_0b3195.pth
+└── sam_vit_b_01ec64.pth
+```
 
+**train:**
 
 ```bash  
 torchrun --standalone --devices 8 python scripts/main.py \
-    --sam_ckpt vit-h \
+    --model-type vit-h \
     --decoder_type pi \
     --output output_folder \
     --ckpt_root ckpt_folder \
@@ -87,7 +93,7 @@ or on single device:
 
 ```bash
 /usr/bin/env CUDA_VISIBLE_DEVICES=0 python scripts/main.py \
-    --sam_ckpt vit-h \
+    --model-type vit-h \
     --decoder_type pi \
     --output output_folder \
     --ckpt_root ckpt_folder \
@@ -98,7 +104,7 @@ or on single device:
 
 ```bash
 python scripts/main.py \
-    --sam_ckpt vit-h \
+    --model-type vit-h \
     --decoder_type pi \
     --output output_folder \
     --ckpt_root ckpt_folder \
@@ -114,3 +120,7 @@ python scripts/gradio.py
 ```
 
 ## checkpoints
+
+[pi-sam](https://drive.google.com/drive/folders/1Kw69f9XoKtEKs_Sc811UvfDp5oc2KwAE?usp=drive_link)
+
+[sam](https://github.com/facebookresearch/segment-anything#model-checkpoints)
