@@ -52,7 +52,7 @@ checkpoint_folder
 **train:**
 
 ```bash  
-torchrun --standalone --devices 8 python scripts/main.py \
+torchrun --nproc_per_node=8 python scripts/main.py \
     --model-type vit-h \
     --decoder_type pi \
     --output output_folder \
@@ -63,7 +63,7 @@ torchrun --standalone --devices 8 python scripts/main.py \
 or on single device:
 
 ```bash
-/usr/bin/env CUDA_VISIBLE_DEVICES=0 python scripts/main.py \
+python scripts/main.py \
     --model-type vit-h \
     --decoder_type pi \
     --output output_folder \
