@@ -10,9 +10,7 @@ from functools import partial
 
 from .modeling import ImageEncoderViT, PromptEncoder, SamEncoder,\
                       TwoWayTransformer, MaskDecoder,\
-                      MaskDecoderHQ, MaskDecoderLarge, MaskDecoderLargeFeat,\
-                      MaskDecoderPi, MaskDecoderLargeFeatNew, MaskDecoderLargeFeatConv,\
-                      MaskDecoderAE
+                      MaskDecoderHQ, MaskDecoderAE
 
 
 def build_sam_vit_h(checkpoint=None):
@@ -101,7 +99,7 @@ def _build_sam(
 
 def build_mask_decoder(model_type, vit_type, ckpt):
     prompt_embed_dim = 256
-    assert model_type in ("ori", "hq", "large", "large_feat", "pi", "large_feat_new", "large_feat_conv", "ae")
+    assert model_type in ("ori", "hq", "pi")
     if model_type == "ori":
         mask_decoder = MaskDecoder(
             num_multimask_outputs=3,
@@ -117,17 +115,7 @@ def build_mask_decoder(model_type, vit_type, ckpt):
             ckpt=ckpt)
     elif model_type == 'hq':
         mask_decoder = MaskDecoderHQ(vit_type, ckpt)
-    elif model_type == 'large':
-        mask_decoder = MaskDecoderLarge(vit_type, ckpt)
-    elif model_type == 'large_feat':
-        mask_decoder = MaskDecoderLargeFeat(vit_type, ckpt)
     elif model_type == 'pi':
-        mask_decoder = MaskDecoderPi(vit_type, ckpt)
-    elif model_type == 'large_feat_new':
-        mask_decoder = MaskDecoderLargeFeatNew(vit_type, ckpt)
-    elif model_type == 'large_feat_conv':
-        mask_decoder = MaskDecoderLargeFeatConv(vit_type, ckpt)
-    elif model_type == 'ae':
         mask_decoder = MaskDecoderAE(vit_type, ckpt)
     else:
         raise NotImplementedError()

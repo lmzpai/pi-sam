@@ -172,8 +172,8 @@ def get_im_gt_name_dict(datasets, training, logger):
     return name_im_gt_list
 
 
-def create_dataloaders(ued_datasets, data_root, logger, batch_size=1, training=False):
-    datasets = collect_datasets(ued_datasets, data_root, training)
+def create_dataloaders(used_datasets, data_root, logger, batch_size=1, training=False):
+    datasets = collect_datasets(used_datasets, data_root, training)
     name_im_gt_list = get_im_gt_name_dict(datasets, training, logger)
     gos_dataloaders = []
     gos_datasets = []
@@ -266,7 +266,7 @@ class OnlineDataset(Dataset):
         return len(self.dataset["im_path"])
     def __getitem__(self, idx):
         im_path = self.dataset["im_path"][idx]
-        gt_path = self.dataset["gt_path"][idx].replace("im","gt")
+        gt_path = self.dataset["gt_path"][idx]
 
         im = io.imread(im_path)
         gt = io.imread(gt_path)

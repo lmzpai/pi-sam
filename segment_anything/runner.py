@@ -141,7 +141,7 @@ class Runner:
         batched_input = self.get_batched_input(inputs, labels, labels_256, input_keys = ['box'])
         with torch.no_grad():
             encoder_outputs, interm_embeddings = self.sam_encoder(batched_input, multimask_output=False)
-        decoder_outputs = self.net(encoder_outputs, interm_embeddings, labels / 255.0, labels_256, interact=True, get_loss=True)
+        decoder_outputs = self.net(encoder_outputs, interm_embeddings, labels / 255.0, labels_256, interactive=False, get_loss=True)
         loss, info_dict = self.loss_post_process(decoder_outputs['losses'])
 
         self.optimizer.zero_grad()

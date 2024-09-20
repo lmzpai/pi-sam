@@ -145,7 +145,7 @@ dataset_big_val = {
     "im_ext": ".jpg",
     "gt_ext": ".png"
 }
-# "HRS10K","HRS10K_HD"_2560max
+
 dataset_hrs_val = {
     "name": "HRS10K",
     "im_dir": "HRS10K/img_test",
@@ -172,7 +172,7 @@ all_valid_datasets = [dataset_dis_te1, dataset_dis_te2, dataset_dis_te3, dataset
 
 def collect_datasets(used_datasets, data_root, training):
     datasets = []
-    if training:
+    if not training:
         for dataset in all_train_datasets:
             if dataset['name'] in used_datasets or 'ALL' in used_datasets:
                 dataset['im_dir'] = os.path.join(data_root, dataset['im_dir'])
